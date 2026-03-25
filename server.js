@@ -16,8 +16,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/products', async (req, res) => {
-  const result = await pool.query('SELECT * FROM products');
-  res.json(result.rows);
+  try {
+    const result = await pool.query('SELECT * FROM products');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ erro: err.message });
+  }
 });
 
 app.listen(process.env.PORT || 3001);
