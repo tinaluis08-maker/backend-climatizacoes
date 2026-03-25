@@ -25,6 +25,8 @@ app.get('/products', async (req, res) => {
   }
 });
 
+console.log("URL DO BANCO:", process.env.DATABASE_URL);
+
 app.listen(process.env.PORT || 3001, () => {
   console.log('Servidor rodando');
 });
